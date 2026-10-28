@@ -4,10 +4,12 @@ import { ModerationController } from './moderation.controller';
 import { ReportService } from './report.service';
 import { ReportController } from './report.controller';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from '../auth/auth.module';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Module({
-  imports: [ConfigModule],
-  providers: [ModerationService, ReportService],
+  imports: [ConfigModule, AuthModule],
+  providers: [ModerationService, ReportService, JwtAuthGuard],
   controllers: [ModerationController, ReportController],
   exports: [ModerationService, ReportService],
 })

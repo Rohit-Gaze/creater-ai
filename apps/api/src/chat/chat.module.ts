@@ -7,11 +7,13 @@ import { ModerationModule } from '../moderation/moderation.module';
 import { AnalyticsModule } from '../analytics/analytics.module';
 import { MeterModule } from '../meter/meter.module';
 import { PrismaModule } from '../prisma/prisma.module';
+import { AuthModule } from '../auth/auth.module';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Module({
-  imports: [AIModule, ModerationModule, AnalyticsModule, MeterModule, PrismaModule],
+  imports: [AIModule, ModerationModule, AnalyticsModule, MeterModule, PrismaModule, AuthModule],
   controllers: [ChatController, ChatStreamController],
-  providers: [ChatService],
+  providers: [ChatService, JwtAuthGuard],
   exports: [ChatService],
 })
 export class ChatModule { }
